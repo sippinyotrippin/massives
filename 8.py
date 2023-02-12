@@ -12,7 +12,7 @@
 # Если таких рядов несколько, то выведите номер наименьшего подходящего ряда.
 # Если подходящего ряда нет, выведите число 0.
 
-from massives.generate_matrix_function import generate_matrix  # imports besides generate_matrix func and
+from generate_matrix_function import generate_matrix  # imports besides generate_matrix func and
 # print_matrix func and randint because without these funcs it does not work
 from print_matrix_func import print_matrix
 
@@ -25,15 +25,18 @@ if n > 20 or m > 20:
 
 k = int(input('How many tickets you want to buy? '))
 massive = generate_matrix(n, m)
+
 count = 0
+
 for row in range(n):
     if count == k:
-        print(f"{k} places in {row} row is available")
+        print(f"{k} places in {row} row available")
         break
     else:
         count = 0
+
     for seat in range(m):
-        if massive[row][seat] == 0:
+        if massive[row][seat] == 0 and massive[row][seat - 1] == massive[row][seat]:
             count += 1
         if count == k:
             break
