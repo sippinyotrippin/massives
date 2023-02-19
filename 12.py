@@ -17,10 +17,14 @@ if n > 100 or m > 100:
 
 massive = [[0] * m for i in range(n)]
 number = 1
+previous = 0
 for row in range(n):
     for col in range(m):
-        previous = massive[row][col]
-        if massive[row][col-1] == 0:
+        if previous == 0:
             massive[row][col] = number
             number += 1
+            previous = massive[row][col]
+        elif previous != 0:
+            previous = 0
+
 print_matrix(massive, n, m, width=4)
